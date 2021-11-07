@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef } from "react";
+import React, { useMemo, useRef } from "react";
 import { View, StyleSheet } from "react-native";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 
@@ -26,11 +26,6 @@ const MyBottomSheet: React.FC<Props> = ({
 	// custom backdrop
 	const CustomBackdrop = CustomBackdropGenerator(shrinkedHeader);
 
-	// callbacks
-	const handleSheetChanges = useCallback((index: number) => {
-		isNaN(index);
-	}, []);
-
 	// render
 	return (
 		<View style={styles.container}>
@@ -40,7 +35,6 @@ const MyBottomSheet: React.FC<Props> = ({
 				index={0}
 				snapPoints={snapPoints}
 				backdropComponent={CustomBackdrop}
-				onChange={handleSheetChanges}
 			>
 				<BottomSheetScrollView>{children}</BottomSheetScrollView>
 			</BottomSheet>

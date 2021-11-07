@@ -38,7 +38,7 @@ function CustomBackdropGenerator(ShinkedHeader: React.ReactNode): BackdropType {
 		);
 
 		return (
-			<Animated.View style={containerStyle}>{ShinkedHeader}</Animated.View>
+			<Animated.View style={containerStyle} pointerEvents="none">{ShinkedHeader}</Animated.View>
 		);
 	};
 	return useCustomBackdrop;
