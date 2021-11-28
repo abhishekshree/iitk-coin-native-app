@@ -17,22 +17,22 @@ const HistoryListItem: React.FC<Props> = (props) => {
 	const { details } = props;
 
 	const height = useRef(new Animated.Value(0)).current;
-	let detailsListHeight = 140;
+	let detailsListHeight = 130;
 
 	if (details.Type === history.TransactionType.REDEEM){
-		detailsListHeight = 100;
-	}else if (details.Type === history.TransactionType.REWARD){
 		detailsListHeight = 85;
+	}else if (details.Type === history.TransactionType.REWARD){
+		detailsListHeight = 70;
 	}else if (details.Type === history.TransactionType.TRANSFER){
-		detailsListHeight = 135;
+		detailsListHeight = 120;
 	}
 
 	const [isExpanded, setIsExpanded] = useState(false);
 
 	// to hide padding when collapsed
 	const opacity = height.interpolate({
-		inputRange: [0, detailsListHeight * 0.3, detailsListHeight],
-		outputRange: [0, 0.8, 1],
+		inputRange: [0, detailsListHeight * 0.05, detailsListHeight],
+		outputRange: [0, 1, 1],
 	});
 
 	useEffect(() => {
@@ -50,7 +50,7 @@ const HistoryListItem: React.FC<Props> = (props) => {
 
 	return (
 		<View style={styles.mainContainer}>
-			<ItemTitle onPress={toggle} details={details} isExpanded={isExpanded} />
+			<ItemTitle onPress={toggle} details={details} />
 			<Animated.View style={[styles.content, { 
 				height: height, 
 				opacity: opacity 

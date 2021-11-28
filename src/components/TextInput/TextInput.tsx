@@ -11,17 +11,14 @@ export interface Props {
 	numeric?: boolean;
 	error?: string;
 	onChangeText: (text: string) => void;
-	onSubmitEditing?: () => void;
-	last?: boolean;
 }
 
 const TextInput: React.FC<Props> = (props) => {
 
-	const { onChangeText, placeholder, title, password, numeric, error, onSubmitEditing, last } = props;
+	const { onChangeText, placeholder, title, password, numeric, error } = props;
 	const keyboardType = numeric ? "numeric" : "default";
-	const SubmitType = last ? "done" : "next";
 	const autoCapitalize = password ? "none" : "words";
-
+	
 	return (
 
 		<View style={styles.container}>
@@ -35,12 +32,10 @@ const TextInput: React.FC<Props> = (props) => {
 				onChangeText={onChangeText}
 				keyboardType={keyboardType}
 				autoCapitalize={autoCapitalize}
-				returnKeyType={SubmitType}
-				onSubmitEditing={onSubmitEditing}
 			/>
 
 			{Boolean(error) &&
-				<Text.Title red style={styles.error}>{error}</Text.Title>
+					<Text.Title red style={styles.error}>{error}</Text.Title>
 			}
 
 		</View>

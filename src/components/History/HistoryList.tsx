@@ -6,7 +6,6 @@ import HistoryListItem from "components/Card/HistoryListItem";
 
 export interface Props {
 	history: history.TransactionHistory[];
-	isFetched?: boolean;
 }
 
 const noHistoryParams: history.RewardHistory = {
@@ -30,5 +29,5 @@ export const HistoryList: React.FC<Props> = ({ history }: Props) => {
 };
 
 export const NoHistory: () => JSX.Element = () => {
-	return <View><HistoryListItem key="noHistory" details={noHistoryParams} /></View>;
+	return <HistoryListItem key="noHistory" details={noHistoryParams} />;
 };

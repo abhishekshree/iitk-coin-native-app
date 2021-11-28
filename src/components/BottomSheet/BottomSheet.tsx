@@ -36,7 +36,7 @@ const MyBottomSheet: React.FC<Props> = ({
 				snapPoints={snapPoints}
 				backdropComponent={CustomBackdrop}
 			>
-				<BottomSheetScrollView keyboardShouldPersistTaps="always">{children}</BottomSheetScrollView>
+				<BottomSheetScrollView>{children}</BottomSheetScrollView>
 			</BottomSheet>
 		</View>
 	);

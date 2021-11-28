@@ -21,7 +21,7 @@ const SignupForm: React.FC<Props> = (props) => {
 	const { setName, setPassword, setConfirmPassword, setRollNo, onPressSubmit, errors, isClicked } = props;
 
 	const onChangeName = (name: string) => {
-		setName(name.trim());
+		setName(name);
 	};
 
 	const onChangeRollNo = (rollNo: string) => {
@@ -68,8 +68,6 @@ const SignupForm: React.FC<Props> = (props) => {
 				title={LABELS.CONFIRM_PASSWORD_INPUT_FIELD_TITLE}
 				onChangeText={onChangeConfirmPassword}
 				error={errors?.confirmPassword}
-				last={true}
-				onSubmitEditing={onPressSubmit}
 			/>
 
 			<Button title={label} onPress={onPressSubmit} disabled={isClicked} />

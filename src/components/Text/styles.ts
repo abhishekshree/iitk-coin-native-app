@@ -48,9 +48,6 @@ export default StyleSheet.create({
 	secondary: {
 		fontSize: FONT.SIZE.SECONDARY,
 	},
-	small: {
-		fontSize: FONT.SIZE.FOOTER,
-	},
 	teal: {
 		color: COLORS.TEAL,
 	},

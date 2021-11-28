@@ -19,7 +19,7 @@ const RedeemForm: React.FC<Props> = (props) => {
 	const { setItem, setAmount, onPressRequest, errors, isClicked } = props;
 
 	const onChangeItem = (item: string) => {
-		setItem(item.trim());
+		setItem(item);
 	};
 
 	const onChangeAmount = (amount: string) => {
@@ -44,8 +44,6 @@ const RedeemForm: React.FC<Props> = (props) => {
 				title={LABELS.COINS_INPUT_FIELD_TITLE}
 				onChangeText={onChangeAmount}
 				error={errors?.amount}
-				last={true}
-				onSubmitEditing={onPressRequest}
 			/>
 
 			<Button title={label} onPress={onPressRequest} disabled={isClicked} />
