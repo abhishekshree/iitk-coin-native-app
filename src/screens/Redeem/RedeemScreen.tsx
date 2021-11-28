@@ -4,14 +4,14 @@ import { View } from "react-native";
 import * as Animatable from "react-native-animatable";
 
 import { AppState } from "redux-store/reducers";
-import { setCurrentScreen } from "redux-store/actions";
+import { setCurrentScreen, setIsAuthenticated } from "redux-store/actions";
 import { Text, WalletBalance, Redeem } from "components";
 import { LABELS } from "constant";
 import VerifyOtpForm from "components/Forms/VerifyOtp";
 import { ScreenType } from "screens/screen.types";
 import { validator } from "utils";
 import RedeemForm from "components/Forms/Redeem";
-import { requestOtp, redeemRequest } from "callbacks";
+import { requestOtp, redeemRequest, isLoggedIn } from "callbacks";
 import { wallet } from "api";
 
 import styles from "../screen.styles";
@@ -85,6 +85,13 @@ const RedeemScreen: () => JSX.Element = () => {
 			if (txid) {
 				setTxnID(txid);
 				setRedeemStage(RedeemStage.SUCCESS);
+			} else {
+				isLoggedIn().then(({Status}) => {
+					if (!Status) {
+						dispatch(setIsAuthenticated(false));
+						dispatch(setCurrentScreen(ScreenType.LOGIN));
+					}
+				});
 			}
 		}).catch(() => {
 			setClickedVerifyOtp(false);

@@ -13,6 +13,7 @@ import LABELS from "constant/labels";
 import { getBalance, getHistory, getName } from "callbacks";
 import { refreshToken } from "callbacks/auth/refresh";
 
+
 import styles from "../screen.styles";
 
 const HomeScreen: () => JSX.Element = () => {

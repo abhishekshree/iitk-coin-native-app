@@ -4,14 +4,14 @@ import { View } from "react-native";
 import * as Animatable from "react-native-animatable";
 
 import { AppState } from "redux-store/reducers";
-import { setCurrentScreen, setCoins } from "redux-store/actions";
+import { setCurrentScreen, setCoins, setIsAuthenticated } from "redux-store/actions";
 import { Text, WalletBalance, Transfer } from "components";
 import TransferForm from "components/Forms/Transfer";
 import { LABELS } from "constant";
 import VerifyOtpForm from "components/Forms/VerifyOtp";
 import { ScreenType } from "screens/screen.types";
 import { validator } from "utils";
-import { getName, requestOtp , transfer , getTax } from "callbacks";
+import { getName, requestOtp , transfer , getTax, isLoggedIn } from "callbacks";
 import { wallet } from "api";
 
 import styles from "../screen.styles";
@@ -64,6 +64,14 @@ const TransferScreen: () => JSX.Element = () => {
 			return;
 		}
 		getDetails(rollNo).then(([receiverName, transferTax]) => {
+			if(receiverName === "" || transferTax === 0) {
+				isLoggedIn().then(({Status}) => {
+					if (!Status) {
+						dispatch(setIsAuthenticated(false));
+						dispatch(setCurrentScreen(ScreenType.LOGIN));
+					}
+				});
+			}
 			setClickedSend(false);
 			setName(receiverName);
 			setTax(transferTax);
@@ -114,6 +122,13 @@ const TransferScreen: () => JSX.Element = () => {
 					setTxnID(txid);
 					dispatch(setCoins(coins - amount));
 					setTransferStage(TransferStage.SUCCESS);
+				} else {
+					isLoggedIn().then(({Status}) => {
+						if (!Status) {
+							dispatch(setIsAuthenticated(false));
+							dispatch(setCurrentScreen(ScreenType.LOGIN));
+						}
+					});
 				}
 			})
 			.catch(() => {

@@ -9,6 +9,14 @@ const styles = StyleSheet.create({
 		margin: 5,
 		padding: 2,
 	},
+	button : {
+		alignItems : "center",
+		flex : 1,
+		justifyContent : "center",
+		maxHeight: "10%",
+		maxWidth: "30%",
+		minWidth: "20%",
+	},
 	container: {
 		alignItems: "center",
 		flex: 1,
